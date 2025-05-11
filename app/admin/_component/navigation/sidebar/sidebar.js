@@ -1,0 +1,33 @@
+"use client";
+import { Logout } from "@mui/icons-material";
+import AdminSidebarItems from "./sidebaritems";
+import AdminSidebarHeader from "./sidebarheader";
+import { useData } from "../../context/adminDataContext";
+
+export default function AdminSidebar() {
+  const { sidebarView } = useData();
+
+  return (
+    <div
+      className={`bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col 
+    ${
+      sidebarView ? "max-w-100" : "max-w-20"
+    } transition-[max-width] duration-1000`}
+    >
+      <AdminSidebarHeader />
+      <div className="flex-1">
+        <AdminSidebarItems sidebarView={sidebarView} />
+      </div>
+      <div className="bg-red-600 text-white p-5 flex justify-between">
+        <div
+          className={`${
+            sidebarView ? "max-w-100" : "max-w-0"
+          } overflow-hidden transition-all duration-500 text-nowrap`}
+        >
+          Logout
+        </div>
+        <Logout />
+      </div>
+    </div>
+  );
+}
