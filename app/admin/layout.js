@@ -5,12 +5,9 @@ import AdminSidebar from "./_component/navigation/sidebar/sidebar";
 export default function AdminLayout({ children }) {
   return (
     <AdminDataProvider>
-      <div className="flex">
+      <div className="flex ">
         <AdminSidebar />
-        <div className="flex-1 relative">
-   
-          {children}
-        </div>
+        <div className="flex-1">{children}</div>
       </div>
     </AdminDataProvider>
   );

@@ -15,7 +15,8 @@ export default function AdminSidebarHeader() {
             sidebarView ? "max-w-100" : "max-w-0"
           } overflow-hidden transition-all h-10 duration-500 text-nowrap flex`}
         >
-          <Image src={logo} alt="GyanGhar" height="40" /> &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+          <Image src={logo} alt="GyanGhar" height="40" className="dark:dark" />
+          &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
         </div>
         <div
           className="w-[24px] flex flex-col justify-between group h-[19px]"

@@ -9,7 +9,7 @@ export default function AdminSidebar() {
 
   return (
     <div
-      className={`bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col 
+      className={`bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-100 h-screen sticky top-0 left-0 flex flex-col 
     ${
       sidebarView ? "max-w-100" : "max-w-20"
     } transition-[max-width] duration-1000`}
@@ -22,7 +22,7 @@ export default function AdminSidebar() {
         <div
           className={`${
             sidebarView ? "max-w-100" : "max-w-0"
-          } overflow-hidden transition-all duration-500 text-nowrap`}
+          } overflow-hidden transition-all duration-500 text-nowrap font-semibold`}
         >
           Logout
         </div>
