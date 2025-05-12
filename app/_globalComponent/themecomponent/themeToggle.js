@@ -8,8 +8,10 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="bg-slate-200 dark:bg-slate-900 p-1 rounded-full cursor-pointer shadow-xl"
+      className="bg-slate-200 dark:bg-slate-900 p-1 rounded-full cursor-pointer shadow-xl transition-all duration-500"
     >
+
+      
       {theme === "light" ? <DarkMode /> : <LightMode />}
     </button>
   );
