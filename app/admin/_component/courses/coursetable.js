@@ -48,13 +48,13 @@ export default function AdminCourseTable() {
             <td className="px-5 py-2 ">{item.category}</td>
             <td className="px-5 py-2 ">{item.status}</td>
             <td className="px-5 py-2 flex gap-2 justify-center">
-              <button className="p-1 bg-blue-600 text-white rounded cursor-pointer hover:scale-90 transition-all duration-500">
+              <button className="p-1 bg-blue-600 text-white hover:rounded cursor-pointer hover:scale-90 transition-all duration-500">
                 <Preview fontSize="small" />
               </button>
-              <button className="p-1 bg-blue-900 text-white rounded cursor-pointer hover:scale-90 transition-all duration-500">
+              <button className="p-1 bg-blue-900 text-white hover:rounded cursor-pointer hover:scale-90 transition-all duration-500">
                 <Edit fontSize="small" />
               </button>
-              <button className="p-1 bg-red-900 text-white rounded cursor-pointer hover:scale-90 transition-all duration-500">
+              <button className="p-1 bg-red-900 text-white hover:rounded cursor-pointer hover:scale-90 transition-all duration-500">
                 <Delete fontSize="small" />
               </button>
             </td>

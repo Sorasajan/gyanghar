@@ -2,72 +2,7 @@ import Link from "next/link";
 import AdminCategoryDetails from "../_component/categories/categorydetail";
 import { Add } from "@mui/icons-material";
 import AdminHeader from "../_component/adminglobal/header";
-
-const fallbackcategories = {
-  data: [
-    {
-      category_id: 1,
-      name: "Programming",
-      description: "Software development courses",
-      parent_category_id: null,
-      created_at: "2025-05-09T09:34:26.000Z",
-      children: [
-        {
-          category_id: 4,
-          name: "Programming4",
-          description: "Software development courses4",
-          parent_category_id: 1,
-          created_at: "2025-05-09T09:37:32.000Z",
-          children: [
-            {
-              category_id: 7,
-              name: "Programming6",
-              description: "Software development courses6",
-              parent_category_id: 4,
-              created_at: "2025-05-09T09:40:18.000Z",
-              children: [],
-            },
-          ],
-        },
-        {
-          category_id: 8,
-          name: "Programming7",
-          description: "Software development courses7",
-          parent_category_id: 1,
-          created_at: "2025-05-09T09:42:14.000Z",
-          children: [],
-        },
-      ],
-    },
-    {
-      category_id: 2,
-      name: "Programming2",
-      description: "Software development courses2",
-      parent_category_id: null,
-      created_at: "2025-05-09T09:34:37.000Z",
-      children: [
-        {
-          category_id: 5,
-          name: "Programming5",
-          description: "Software development courses5",
-          parent_category_id: 2,
-          created_at: "2025-05-09T09:39:25.000Z",
-          children: [],
-        },
-      ],
-    },
-    {
-      category_id: 3,
-      name: "Programming3",
-      description: "Software development courses3",
-      parent_category_id: null,
-      created_at: "2025-05-09T09:34:45.000Z",
-      children: [],
-    },
-  ],
-  success: true,
-  status: 200,
-};
+import fetcher from "../_component/data";
 
 const renderCategories = (items, isRoot = true) => {
   return (
@@ -105,26 +40,8 @@ const renderCategories = (items, isRoot = true) => {
   );
 };
 
-async function fetcher(url) {
-  try {
-    const res = await fetch(url, {
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      const error = await res.json().catch(() => ({ message: res.statusText }));
-      throw new Error(error.message || "Fetch error");
-    }
-    return res.json();
-  } catch (err) {
-    console.error("Fetch failed:", err.message);
-    console.warn("Using fallback data.");
-    return fallbackcategories;
-  }
-}
-
 export default async function AdminCategoryPage({ searchParams }) {
-  const selectedId = await searchParams?.categoryId || "";
+  const selectedId = (await searchParams?.categoryId) || "";
   const categories = await fetcher("http://10.10.93.150:3000/api/categories");
 
   return (
@@ -137,7 +54,9 @@ export default async function AdminCategoryPage({ searchParams }) {
               <Add /> Add Category
             </div>
           </Link>
-          {renderCategories(categories.data)}
+          {categories
+            ? renderCategories(categories.data)
+            : "No Categories to Show"}
         </div>
         <div className="flex-1 p-10 pl-5">
           <AdminCategoryDetails data={selectedId} />

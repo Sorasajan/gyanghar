@@ -17,11 +17,11 @@ export default function AdminCategoryDetails({ data }) {
       <div className="mt-5 flex gap-5">
         <Link
           href="/admin/categories/edit/1"
-          className="px-10 py-2 bg-blue-900 text-white hover:scale-95 hover:bg-blue-600 transition-all duration-500 cursor-pointer"
+          className="px-10 py-2 bg-blue-900 text-white hover:scale-95 hover:rounded hover:bg-blue-600 transition-all duration-500 cursor-pointer"
         >
           <Edit /> Edit
         </Link>
-        <button className="px-10 py-2 bg-red-900 text-white hover:scale-95 hover:bg-red-600 transition-all duration-500 cursor-pointer">
+        <button className="px-10 py-2 bg-red-900 text-white hover:scale-95 hover:rounded hover:bg-red-600 transition-all duration-500 cursor-pointer">
           <Delete /> Delete
         </button>
       </div>
