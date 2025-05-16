@@ -9,7 +9,7 @@ export default function AdminCourses() {
       <div className="p-10">
         <div className="flex pb-5 gap-5">
           <div className="flex flex-1">
-            <div className="bg-slate-200 p-2 w-30 grid justify-center dark:bg-gray-700 border-b hover:scale-95 transition-all duration-500 cursor-pointer">
+            <div className="bg-slate-200 p-2 w-30 grid justify-center dark:bg-gray-700 border-b">
               <SearchTwoTone />
             </div>
             <input
