@@ -47,15 +47,24 @@ export default function AdminCourseTable() {
             <td className="px-5 py-2 ">{item.title}</td>
             <td className="px-5 py-2 ">{item.category}</td>
             <td className="px-5 py-2 ">{item.status}</td>
-            <td className="px-5 py-2 flex gap-2 justify-center">
-              <button className="p-1 bg-blue-600 text-white hover:rounded cursor-pointer hover:scale-90 transition-all duration-500">
+            <td className="px-5 py-2 flex gap-2 justify-center w-30">
+              <button className="p-1 flex gap-0 hover:gap-2 group bg-blue-600 text-white hover:rounded cursor-pointer hover:scale-90 transition-all duration-500">
                 <Preview fontSize="small" />
+                <p className="max-w-0 p-0 group-hover:pr-2 group-hover:max-w-100 transition-all duration-1000 overflow-hidden">
+                  View
+                </p>
               </button>
-              <button className="p-1 bg-blue-900 text-white hover:rounded cursor-pointer hover:scale-90 transition-all duration-500">
+              <button className="p-1 flex gap-0 hover:gap-2 group bg-blue-900 text-white hover:rounded cursor-pointer hover:scale-90 transition-all duration-500">
                 <Edit fontSize="small" />
+                <p className="max-w-0 p-0 group-hover:pr-2 group-hover:max-w-100 transition-all duration-1000 overflow-hidden">
+                  Edit
+                </p>
               </button>
-              <button className="p-1 bg-red-900 text-white hover:rounded cursor-pointer hover:scale-90 transition-all duration-500">
+              <button className="p-1 flex gap-0 hover:gap-2 group bg-red-900 text-white hover:rounded cursor-pointer hover:scale-90 transition-all duration-500">
                 <Delete fontSize="small" />
+                <p className="max-w-0 p-0 group-hover:pr-2 group-hover:max-w-100 transition-all duration-1000 overflow-hidden">
+                  Delete
+                </p>
               </button>
             </td>
           </tr>
