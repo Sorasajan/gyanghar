@@ -2,7 +2,8 @@ import Link from "next/link";
 import AdminCategoryDetails from "../_component/categories/categorydetail";
 import { Add } from "@mui/icons-material";
 import AdminHeader from "../_component/adminglobal/header";
-import fetcher from "../_component/data";
+
+import { categoryFetcher } from "../_component/data";
 
 const renderCategories = (items, isRoot = true) => {
   return (
@@ -42,7 +43,7 @@ const renderCategories = (items, isRoot = true) => {
 
 export default async function AdminCategoryPage({ searchParams }) {
   const selectedId = (await searchParams?.categoryId) || "";
-  const categories = await fetcher("http://10.10.93.150:3000/api/categories");
+  const categories = await categoryFetcher();
 
   return (
     <div>
