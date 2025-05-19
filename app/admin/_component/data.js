@@ -1,14 +1,13 @@
 // category list fetch api
 async function categoryFetcher() {
-  const url = "https://gyanghar.loca.lt/api/categories/";
-  const token =
-    "Bearer txteyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWRtaW4iLCJpYXQiOjE2OTYyMzQ1NjAsImV4cCI6MTY5NjIzODE2MH0.rKcsAl6CzBdX1XK6m2tXAnOaE5F1j4VzNw8X6S7pGiA";
+  const url = process.env.API_URL;
+  const token = process.env.API_AUTH;
 
   try {
     const res = await fetch(url, {
       method: "GET",
       headers: {
-        Authorization: token,
+        Authorization: `Token ${token}`,
         "Content-Type": "application/json",
       },
       cache: "no-store",
@@ -30,23 +29,27 @@ async function categoryFetcher() {
   }
 }
 
-export { categoryFetcher, categoryPost };
-
 async function categoryPost(payload) {
-  const url = "https://gyanghar.loca.lt/api/categories/";
-  const token =
-    "Bearer txteyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWRtaW4iLCJpYXQiOjE2OTYyMzQ1NjAsImV4cCI6MTY5NjIzODE2MH0.rKcsAl6CzBdX1XK6m2tXAnOaE5F1j4VzNw8X6S7pGiA";
+  const url = process.env.API_URL;
+  const token = process.env.API_AUTH;
 
   const res = await fetch(url, {
     method: "POST",
     headers: {
-      Authorization: token,
+      Authorization: `Token ${token}`,
+
       "Content-Type": "application/json",
     },
     body: JSON.stringify(payload),
+    mode: "cors",
   });
 
   if (!res.ok) {
     console.log("error");
   }
+  console.log("success");
+
+  return;
 }
+
+export { categoryFetcher, categoryPost };
