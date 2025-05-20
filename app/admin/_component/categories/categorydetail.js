@@ -5,7 +5,7 @@ import AdminCategoryDelete from "./categorydelete";
 export default function AdminCategoryDetails({ data }) {
   const id = data ? data : "not found";
   return (
-    <div className="p-5 bg-gray-200 dark:bg-gray-800">
+    <div className="p-5 ">
       <h1 className="font-semibold">Science {id}</h1>
       <hr className="my-5" />
 

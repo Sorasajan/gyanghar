@@ -1,9 +1,8 @@
 import Link from "next/link";
 import AdminCategoryDetails from "../_component/categories/categorydetail";
-import { Add } from "@mui/icons-material";
-import AdminHeader from "../_component/adminglobal/header";
 
 import { categoryFetcher } from "../_component/data";
+import AdminPageCardHeader from "../_component/adminglobal/pagecardheader";
 
 const renderCategories = (items, isRoot = true) => {
   return (
@@ -47,19 +46,19 @@ export default async function AdminCategoryPage({ searchParams }) {
 
   return (
     <div>
-      <AdminHeader title="Category" />
+      <AdminPageCardHeader
+        title="Categories"
+        button={true}
+        link="/admin/categories/add"
+        button_title="Add Categories"
+      />
       <div className="flex">
-        <div className="p-10 pr-5 w-80">
-          <Link href="/admin/categories/add">
-            <div className="px-5 py-2 font-semibold bg-blue-900 text-white cursor-pointer hover:scale-95 transition-all duration-500 hover:bg-blue-600 dark:bg-blue-300 dark:text-slate-800">
-              <Add /> Add Category
-            </div>
-          </Link>
+        <div className="p-5 pr-5 w-80 border-r border-gray-200 dark:border-gray-800">
           {categories
             ? renderCategories(categories.data)
             : "No Categories to Show"}
         </div>
-        <div className="flex-1 p-10 pl-5">
+        <div className="flex-1 p-5 pl-5">
           <AdminCategoryDetails data={selectedId} />
         </div>
       </div>

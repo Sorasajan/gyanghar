@@ -1,9 +1,12 @@
 "use client";
-import { Add } from "@mui/icons-material";
-import AdminHeader from "../../_component/adminglobal/header";
-import AdminCancel from "../../_component/cancel";
+
 import { categoryPost } from "../../_component/data";
 import { useState } from "react";
+import AdminPageCardHeader from "../../_component/adminglobal/pagecardheader";
+import { AdminFormInput } from "../../_component/adminglobal/forms/inputs";
+import { AdminFormTextArea } from "../../_component/adminglobal/forms/inputs";
+import { AdminFormButtonsWithCancel } from "../../_component/adminglobal/forms/buttons";
+import { Add } from "@mui/icons-material";
 
 export default function AdminAddCategory() {
   const [error, setError] = useState("");
@@ -37,11 +40,14 @@ export default function AdminAddCategory() {
   };
   return (
     <div>
-      <AdminHeader title="Add Category" />
-      <div className="p-5">
+      <AdminPageCardHeader title="Add New Category" button={false} />
+
+      <div>
         {error ? (
-          <div className="border border-red-500 bg-red-100 text-red-400 dark:border-red-400/20 dark:bg-red-500/10 dark:text-red-500 p-5 rounded-md">
-            {error}
+          <div className="p-5">
+            <div className="border border-red-500 bg-red-100 text-red-400 dark:border-red-400/20 dark:bg-red-500/10 dark:text-red-500 p-5 rounded-md">
+              {error}
+            </div>
           </div>
         ) : (
           ""
@@ -49,57 +55,40 @@ export default function AdminAddCategory() {
       </div>
       <form onSubmit={handleFormSubmit}>
         <div className="text-center">
-          <div className="grid justify-center grid-cols-2 p-5 gap-5">
-            <div>
-              <section className="flex flex-col gap-2 items-start">
-                <label>*Category Name </label>
-                <input
-                  name="name"
-                  className="p-2 border border-black w-full dark:border-gray-600 rounded bg-slate-200  dark:bg-gray-900"
-                />
-              </section>
-
-              <section className="flex flex-col gap-2 mt-5 dark:border-gray-600 items-start">
-                <label>*Description</label>
-                <textarea
-                  name="description"
-                  className="p-2 border border-black w-full dark:border-gray-600 min-h-20 rounded bg-slate-200 dark:bg-gray-900"
-                />
-              </section>
-              <section className="flex flex-col gap-2 mt-5 dark:border-gray-600 items-start">
-                <label>Parent Category </label>
-                <input
+          <div className="p-5 w-full mt-5">
+            <div className="relative border border-gray-300 dark:border-gray-800 p-5  rounded-lg">
+              <p className="absolute -top-4 left-6 bg-white dark:bg-gray-900 px-3 text-base font-semibold">
+                Category Details
+              </p>
+              <div className="grid grid-cols-2 gap-5 w-full">
+                <AdminFormInput label="**Category Name" name="name" />
+                <AdminFormInput
+                  label="Parent Category"
                   name="parent_category_id"
-                  className="p-2 border border-black w-full dark:border-gray-600 rounded bg-slate-200 dark:bg-gray-900"
                 />
-              </section>
+              </div>
+
+              <AdminFormTextArea
+                label="**Description"
+                name="description"
+                className="min-h-40"
+              />
             </div>
-            <div>
-              <section className="flex flex-col gap-2 dark:border-gray-600 items-start">
-                <label>Meta Title</label>
-                <input
-                  name="meta_title"
-                  className="p-2 border border-black w-full dark:border-gray-600 rounded bg-slate-200 dark:bg-gray-900"
-                />
-              </section>
-              <section className="flex flex-col gap-2 mt-5 dark:border-gray-600 items-start">
-                <label>Meta Description </label>
-                <textarea
-                  name="meta_description"
-                  className="p-2 border border-black min-h-40 w-full dark:border-gray-600 rounded bg-slate-200 dark:bg-gray-900"
-                />
-              </section>
+
+            <div className="relative border border-gray-300 dark:border-gray-800 p-5  rounded-lg mt-10">
+              <p className="absolute -top-4 left-6 bg-white dark:bg-gray-900 px-3 text-base font-semibold">
+                SEO Metadata
+              </p>
+              <AdminFormInput label="Meta Title" name="meta_title" />
+              <AdminFormTextArea
+                label="Meta Description"
+                name="meta_description"
+                className="min-h-40"
+              />
             </div>
-            <section className="mt-10 col-span-2 flex gap-5 justify-center">
-              <button
-                type="submit"
-                className="bg-blue-900 text-white px-5 py-2 hover:rounded-lg hover:bg-blue-600 transition-all duration-500 cursor-pointer hover:scale-95"
-              >
-                <Add /> Add Category
-              </button>
-              <AdminCancel />
-            </section>
           </div>
+
+          <AdminFormButtonsWithCancel Icon={Add} title="Add Category" />
         </div>
       </form>
     </div>
