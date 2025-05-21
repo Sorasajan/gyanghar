@@ -1,6 +1,8 @@
-import { Edit } from "@mui/icons-material";
 import Link from "next/link";
-import AdminCategoryDelete from "./categorydelete";
+import {
+  AdminDeleteButton,
+  AdminEditButton,
+} from "../adminglobal/forms/buttons";
 
 export default function AdminCategoryDetails({ data }) {
   const id = data ? data : "not found";
@@ -9,26 +11,52 @@ export default function AdminCategoryDetails({ data }) {
       <h1 className="font-semibold">Science {id}</h1>
       <hr className="my-5" />
 
-      <p className="font-light italic leading-9">Category Description</p>
+      <p className="font-light italic leading-9">
+        Exercitation adipisicing ex ex voluptate consequat enim id.
+      </p>
       <p className="mt-5">Slug</p>
       <p>Slug</p>
-      <p className="mt-5">Parent Category</p>
-      <p>Science</p>
-      <p className="mt-5">Children Categories</p>
-      <p>11, 12</p>
-
-      <p className="mt-5">Meta Title</p>
-      <p>title</p>
-      <p className="mt-5">Meta Description</p>
-      <p>description</p>
-      <div className="mt-5 flex gap-5">
+      <p className="mt-5 font-semibold">Parent Category</p>
+      <div className="py-2 flex">
         <Link
-          href="/admin/categories/edit/1"
-          className="px-10 py-2 bg-blue-900 text-white hover:scale-95 hover:rounded hover:bg-blue-600 transition-all duration-500 cursor-pointer"
+          href="#"
+          className="px-5 py-1 bg-yellow-500 transition-all duration-500 hover:scale-95 hover:rounded-lg"
         >
-          <Edit /> Edit
+          Science
         </Link>
-        <AdminCategoryDelete data="delete" />
+      </div>
+      <p className="mt-5 font-semibold">Children Categories</p>
+      <div className="flex gap-2 py-2">
+        <Link
+          href="#"
+          className="px-5 py-1 bg-yellow-500  transition-all duration-500 hover:scale-95 hover:rounded-lg"
+        >
+          11
+        </Link>
+        <Link
+          href="#"
+          className="px-5 py-1 w-fit bg-yellow-500  transition-all duration-500 hover:scale-95 hover:rounded-lg"
+        >
+          12
+        </Link>
+      </div>
+
+      <div className="mt-10 border border-gray-200 rounded p-5 flex gap-5 relative">
+        <p className="absolute -top-4 left-6 bg-white dark:bg-gray-900 px-3 font-semibold">
+          SEO Metadata
+        </p>
+        <div>
+          <p className="font-semibold">Meta Title</p>
+          <p>title</p>
+        </div>
+        <div>
+          <p className="font-semibold">Meta Description</p>
+          <p>description</p>
+        </div>
+      </div>
+      <div className="mt-10 flex gap-5">
+        <AdminEditButton link="/admin/categories/edit/1" />
+        <AdminDeleteButton data="1" />
       </div>
     </div>
   );
