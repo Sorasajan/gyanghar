@@ -1,13 +1,13 @@
 // category list fetch api
-async function categoryFetcher() {
-  const url = process.env.API_URL;
-  const token = process.env.API_AUTH;
+const url = process.env.API_URL;
+const token = process.env.API_AUTH;
 
+async function categoryFetcher() {
   try {
     const res = await fetch(url, {
       method: "GET",
       headers: {
-        Authorization: `Token ${token}`,
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       cache: "no-store",
@@ -30,18 +30,12 @@ async function categoryFetcher() {
 }
 
 async function categoryPost(payload) {
-  const url = process.env.API_URL;
-  const token = process.env.API_AUTH;
-
-  const res = await fetch(url, {
+  const res = await fetch("/api/categories/add", {
     method: "POST",
     headers: {
-      Authorization: `Token ${token}`,
-
       "Content-Type": "application/json",
     },
     body: JSON.stringify(payload),
-    mode: "cors",
   });
 
   if (!res.ok) {
