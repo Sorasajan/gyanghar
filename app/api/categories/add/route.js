@@ -4,10 +4,11 @@ export async function POST(req) {
   const body = await req.json(); // extract payload
 
   const url = process.env.API_URL; // use private server-side env vars
-  const token = process.env.API_AUTH;
+  const token = process.env.API_TOKEN;
+  console.log("body", body);
 
   try {
-    const res = await fetch(url, {
+    const res = await fetch(`${url}/api/categories`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

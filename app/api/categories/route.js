@@ -1,21 +1,24 @@
-import { Message } from "@mui/icons-material";
+import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const response = await fetch(`${process.env.API_URL}/categories/`, {
+    console.log("data log", process.env.API_URL);
+
+    const response = await fetch(`${process.env.API_URL}/api/categories`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${process.env.API_TOKEN}`,
-        "Content-Type": "application/JSON",
+        "Content-Type": "application/json",
       },
+      cache: "no-store",
     });
     if (!response.ok) {
-      return JSON.stringify("No Data");
+      return NextResponse.json("No Data", { status: response.status });
     }
 
-    const data = response.json();
-    return data;
+    const data = await response.json();
+    return NextResponse.json(data.data);
   } catch (error) {
-    throw new Error("Error Fetching Data");
+    return NextResponse.json({ message: "Failed to fetch" }, { status: 500 });
   }
 }

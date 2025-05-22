@@ -4,14 +4,16 @@ const token = process.env.API_AUTH;
 
 async function categoryFetcher() {
   try {
-    const res = await fetch(url, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      cache: "no-store",
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SITE_URL}/api/categories`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-store",
+      }
+    );
 
     if (!res.ok) {
       //   throw new Error(data.message || res.statusText || "Fetch error");
@@ -30,6 +32,8 @@ async function categoryFetcher() {
 }
 
 async function categoryPost(payload) {
+  console.log("payload", payload);
+
   const res = await fetch("/api/categories/add", {
     method: "POST",
     headers: {
@@ -41,9 +45,9 @@ async function categoryPost(payload) {
   if (!res.ok) {
     console.log("error");
   }
-  console.log("success");
+  console.log(res);
 
-  return;
+  return res.json();
 }
 
 export { categoryFetcher, categoryPost };

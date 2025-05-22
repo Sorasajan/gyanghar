@@ -43,6 +43,7 @@ const renderCategories = (items, isRoot = true) => {
 export default async function AdminCategoryPage({ searchParams }) {
   const selectedId = (await searchParams?.categoryId) || "";
   const categories = await categoryFetcher();
+  console.log(categories);
 
   return (
     <div>
@@ -54,9 +55,7 @@ export default async function AdminCategoryPage({ searchParams }) {
       />
       <div className="flex">
         <div className="p-5 pr-5 w-80 border-r border-gray-200 dark:border-gray-800">
-          {categories
-            ? renderCategories(categories.data)
-            : "No Categories to Show"}
+          {categories ? renderCategories(categories) : "No Categories to Show"}
         </div>
         <div className="flex-1 p-5 pl-5">
           <AdminCategoryDetails data={selectedId} />

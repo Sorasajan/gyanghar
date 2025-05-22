@@ -1,6 +1,4 @@
 "use client";
-import { ArrowDropDown } from "@mui/icons-material";
-import { useState, useEffect, useRef } from "react";
 
 const AdminFormInput = ({ label, name, value, onChange }) => {
   return (
@@ -29,7 +27,9 @@ const AdminFormTextArea = ({ label, name, className }) => {
   );
 };
 
-const AdminFormDropdown = ({ label, name }) => {
+const AdminFormDropdown = ({ label, name, options, optionName, optionId }) => {
+  console.log(options);
+
   return (
     <section className="flex flex-col gap-2 items-start">
       <label>{label} </label>
@@ -38,8 +38,14 @@ const AdminFormDropdown = ({ label, name }) => {
         autoComplete="off"
         className="p-2 mb-5 border border-gray-300 w-full dark:border-gray-800 rounded bg-slate-100  dark:bg-gray-900"
       >
-        <option>1</option>
-        <option>2</option>
+        <option value="" selected hidden>
+          -- Select --
+        </option>
+        {options.map((option, i) => (
+          <option key={i} value={option[optionId]}>
+            {option[optionName]}
+          </option>
+        ))}
       </select>
     </section>
   );

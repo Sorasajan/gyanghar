@@ -1,5 +1,5 @@
 import { AdminDataProvider } from "./_component/context/adminDataContext";
-import AdminNavbar from "./_component/adminglobal/header";
+
 import AdminSidebar from "./_component/navigation/sidebar/sidebar";
 import AdminHeader from "./_component/adminglobal/header";
 
