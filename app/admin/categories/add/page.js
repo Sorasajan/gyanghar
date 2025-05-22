@@ -1,15 +1,22 @@
 "use client";
 
 import { categoryPost } from "../../_component/data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AdminPageCardHeader from "../../_component/adminglobal/pagecardheader";
-import { AdminFormInput } from "../../_component/adminglobal/forms/inputs";
+import {
+  AdminFormDropdown,
+  AdminFormInput,
+} from "../../_component/adminglobal/forms/inputs";
 import { AdminFormTextArea } from "../../_component/adminglobal/forms/inputs";
 import { AdminFormButtonsWithCancel } from "../../_component/adminglobal/forms/buttons";
 import { Add } from "@mui/icons-material";
 
 export default function AdminAddCategory() {
+  const [name, setName] = useState("");
+  const [slug, setSlug] = useState("");
+  const [isSlugEdited, setIsSlugEdited] = useState(false);
   const [error, setError] = useState("");
+  const [parentCategory, setParentCategory] = useState([]);
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -18,7 +25,6 @@ export default function AdminAddCategory() {
       setError("name field required");
       return;
     }
-    const slug = formData.get("name")?.toLowerCase().replace(/\s+/g, "-");
 
     if (!formData.get("description")) {
       setError("Description is required");
@@ -38,6 +44,25 @@ export default function AdminAddCategory() {
     console.log(payload);
     categoryPost(payload);
   };
+
+  useEffect(() => {
+    if (!isSlugEdited) {
+      const generatedSlug = name.toLowerCase().replace(/\s+/g, "-");
+      setSlug(generatedSlug);
+    }
+  }, [name, isSlugEdited]);
+
+  useEffect(() => {
+    const fetchCategory = async () => {
+      try {
+        const res = await fetch("/api/categories/");
+        const data = await res.json();
+        setParentCategory(data);
+      } catch (error) {
+        console.error("Failed to fetch categories", error);
+      }
+    };
+  }, []);
   return (
     <div>
       <AdminPageCardHeader title="Add New Category" button={false} />
@@ -60,11 +85,28 @@ export default function AdminAddCategory() {
               <p className="absolute -top-4 left-6 bg-white dark:bg-gray-900 px-3 text-base font-semibold">
                 Category Details
               </p>
-              <div className="grid grid-cols-2 gap-5 w-full">
-                <AdminFormInput label="**Category Name" name="name" />
+              <div className="grid grid-cols-3 gap-5 w-full">
                 <AdminFormInput
+                  label="**Category Name"
+                  name="name"
+                  onChange={(e) => {
+                    setName(e.target.value);
+                    setIsSlugEdited(false);
+                  }}
+                />
+                <AdminFormInput
+                  label="slug"
+                  name="slug"
+                  value={slug}
+                  onChange={(e) => {
+                    setSlug(e.target.value);
+                    setIsSlugEdited(true);
+                  }}
+                />
+                <AdminFormDropdown
                   label="Parent Category"
                   name="parent_category_id"
+                  parentCategory={parentCategory}
                 />
               </div>
 

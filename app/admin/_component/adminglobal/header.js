@@ -1,8 +1,8 @@
 "use client";
 
-import ThemeToggle from "@/app/_globalComponent/themecomponent/themeToggle";
 import { AccountCircle } from "@mui/icons-material";
 import { useData } from "../context/adminDataContext";
+import ThemeToggle from "@/app/_globalComponent/themecomponent/themeToggle";
 
 export default function AdminHeader({ title }) {
   const { sidebarView, setSidebarView } = useData();
