@@ -2,8 +2,6 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    console.log("data log", process.env.API_URL);
-
     const response = await fetch(`${process.env.API_URL}/api/categories`, {
       method: "GET",
       headers: {
